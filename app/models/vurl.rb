@@ -63,6 +63,12 @@ class Vurl < ActiveRecord::Base
     end
   end
 
+  def take_screenshot!
+    screenshot = Screenshot.new(:vurl => self)
+    screenshot.snap!
+    update_attribute(:screenshot_path, screenshot.output_file_url)
+  end
+
   def clicks_count(since=nil)
     return read_attribute(:recent_clicks_count) if read_attribute(:recent_clicks_count)
     return clicks.since(since).count if since
