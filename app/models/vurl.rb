@@ -2,6 +2,8 @@ class Vurl < ActiveRecord::Base
   require 'open-uri'
   require 'nokogiri'
 
+  has_attached_file :screenshot, :styles => {:full => "1024x768", :half => "501x384", :thumb => "102x77"}
+
   state_machine :status, :initial => :nominal do
     event :flag_as_spam do
       transition :nominal => :flagged_as_spam
@@ -65,8 +67,8 @@ class Vurl < ActiveRecord::Base
 
   def take_screenshot!
     screenshot = Screenshot.new(:vurl => self)
-    screenshot.snap!
-    update_attribute(:screenshot_path, screenshot.output_file_url)
+    self.screenshot = screenshot.snap!
+    save
   end
 
   def clicks_count(since=nil)

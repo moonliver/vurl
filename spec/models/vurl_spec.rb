@@ -116,14 +116,10 @@ describe "Vurl" do
   describe "#take_screenshot!" do
     let(:vurl) { Fabricate(:vurl) }
     it "delegates to Screenshot" do
-      screenshot = stub(:output_file_url => '/screenshots/awesome_slug.png')
+      screenshot = stub
       Screenshot.should_receive(:new).and_return(screenshot)
       screenshot.should_receive(:snap!)
       vurl.take_screenshot!
-    end
-    it "updates itself with the screenshot path" do
-      vurl.take_screenshot!
-      vurl.reload.screenshot_path.should_not be_nil
     end
   end
 

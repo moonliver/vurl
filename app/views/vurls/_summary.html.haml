@@ -2,6 +2,9 @@
 %ul.team
   %li.member
     %ul
+      %li.member-thumb
+        %div{:style => "width:102px;height:77px;background-color:#CCC;"}
+          &nbsp;
       %li.member-name= link_to vurl.title, vurl.url
       %li.member-position
         == #{vurl.total_clicks} total clicks &bull;
