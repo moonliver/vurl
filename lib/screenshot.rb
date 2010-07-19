@@ -26,7 +26,7 @@ class Screenshot
   end
 
   def command_options
-    "-f png --quality 70 --crop-w 1024 --crop-h 768"
+    "-f png --quality 70 --javascript-delay 1000 --crop-w 1024 --crop-h 768"
   end
 
   def method_missing(method, *args)

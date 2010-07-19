@@ -42,6 +42,9 @@ describe Screenshot do
     it "sets the quality" do
       screenshot.command.should include("--quality 70")
     end
+    it "allows time for javascript to execute" do
+      screenshot.command.should include("--javascript-delay 1000")
+    end
   end
 
   describe "#output_file_path" do
